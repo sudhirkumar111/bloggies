@@ -1,0 +1,55 @@
+
+  <nav class="navbar navbar-nav navbar-expand-sm" >
+    <a class="navbar-brand" href="/"><span style="color:white;font-size: xx-large;font-weight: bolder;"><i class="fa-solid fa-blog"></i><i class="fa-solid fa-house-blank"></i> Bloggies</span></a>
+    
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+         <!-- <a class="nav-link" href="/">Home </a> -->
+          <button class="btn mx-2 btn-dark " type="button"><a href="/"><span style="color:white"><i class="fa-regular fa-house-heart"></i>Home</span></a></button>
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="{% url 'about' %}">About</a> -->
+          <button class="btn  btn-dark mx-2" type="button"><a href="{% url 'about' %}"><span style="color:white">About</span></a></button>
+
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="#">Contact</a> -->
+          <button class="btn btn-dark btn-outline-white mx-2" type="button"><a href="#"><span style="color:white">Contact</span></a></button>
+
+        </li>
+        {% if request.user.is_authenticated %}
+        
+        <li class="nav-item float-right">
+          <!-- <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a> -->
+          <button class="btn btn-dark mx-2" type="button"><a href="{% url 'dashboard' %}" class="text-white"><span style="color:white">Dashboard</span></a></button>
+
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="{% url 'logout' %}">Logout</a> -->
+          <button class="btn btn-dark mx-2" type="button"><a href="{% url 'logout' %}"><span style="color:white">Logout</span></a></button>
+
+          
+        </li>
+        {% else %}
+        <li class="nav-item navbar-right">
+          <!-- <a class="nav-link" href="{% url 'signup' %}">Signup</a> -->
+          <button class="btn btn-dark  mx-2" type="button"><a href="{% url 'signup' %}"><span style="color:white">Signup</span></a></button>
+
+        </li>
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="{% url 'login' %}">Login</a> -->
+          <button class="btn btn-dark mx-2" type="button"><a href="{% url 'login' %}"><span style="color:white">Login</span></a></button>
+
+        </li>
+
+         
+      {% endif %}
+        
+      </ul>
+    </div>
+  </nav>
