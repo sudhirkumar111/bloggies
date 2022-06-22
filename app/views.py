@@ -44,8 +44,9 @@ def user_signup(request):
             fname = form.cleaned_data['first_name']
             lname = form.cleaned_data['last_name']
             email = form.cleaned_data['email']            
-            messages.success(request, 'Congratulation !, You have Become an Author')
+            
             form.save()
+            messages.success(request, 'Congratulation !, You have Become an Author')
             html_template = 'app/welcome.html'
             mydict = {'fname':fname,'lname':lname,'email':email}
             html_message = render_to_string(html_template, context=mydict)
