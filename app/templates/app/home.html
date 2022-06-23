@@ -1,22 +1,40 @@
+!
+
 {% extends 'app/base.html' %}
 {% load static %}
 
+{% block heading %}
+<blockquote class="blockquote text-center text-light">
+  <h1 class="display-3 text-light  bg-success text-center">Welcome To Bloggies</h1>
+</blockquote>
+
+
+  <h1 class="text-danger display-4 bg-warning text-center text-success">Latest post</h1>
+
+{% endblock %}
+
 {% block content %}
-<div class="col-sm-10 my-5">
-  <blockquote class="blockquote text-center text-light">
-    <h1 class="display-3 text-light  bg-success text-center">Welcome To Bloggies</h1>
-    <footer class="blockquote-footer text-dark font-weight-bold"> <cite title="Source Title">Created By Sudhir Kumar</cite></footer>
-  </blockquote>
+
+ 
       {% for post in post %}
-    <div class="jumbotron jumbotron-fluid ">
-        <div class="container-sm">
+      <div class="col-sm-4 mt-2 shadow-sm" style="height: 40%;">
+    <!-- <div class="jumbotron">
+        <div class="container-sm overflow-hidden">
           
-          <h1 class="display-4 mb-3 font-weight-bold round"><span class="bg-light text-warning"><a href="{% url 'post_detail' post.id %}">{{post.title}}</a><i class="fa-regular fa-note"></i> <h5 class="text-light font-italic">Created on {{post.create}} By {{post.author}}</h5 ></span></h1>
-          <p class="lead">{{post.desc|truncatewords:20}}</p>
+          <h1 class="font-weight-bold "><span class="bg-light text-warning"><a href="{% url 'post_detail' post.id %}">{{post.title}}</a><i class="fa-regular fa-note"></i> <h5 class="text-light font-italic">Created on {{post.create}} By {{post.author}}</h5 ></span></h1>
+          <p class="lead mb-auto">{{post.desc|truncatewords:20}}</p>
         </div>
-      </div>
+      </div></div> -->
+      <div class="card border-success mb-3">
+        <div class="card-header bg-danger "><a href="{% url 'post_detail' post.id %}" class="text-light text-center"><strong>{{post.title}}</strong></a></div>
+        <div class="card-body text-info mt-0">
+          <h5 class="card-title"><small class="text-dark font-italic">Created on {{post.create}} By {{post.author}}</small ></h5>
+          <p class="card-text"><p class="">{{post.desc|truncatewords:10}}</p></p><hr>
+          <a href="{% url 'post_detail' post.id %}" class="btn btn-success">Read More</a>
+        </div>
+      </div></div>
       {% endfor %}
-</div>
+
 
 
 {% endblock %}

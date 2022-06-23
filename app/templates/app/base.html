@@ -20,7 +20,8 @@
     <div class="container-fluid">
         {% include 'app/navbar.html'  %}
     </div>
-
+    {% block heading %}
+    {% endblock %}
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -38,7 +39,63 @@
             {% block content %}
             {% endblock %}
         </div>
-        </div>
+        </div><br><br>
+
+        <footer class="text-center mt-5 text-white" style="background-color: #f1f1f1;">
+            <!-- Grid container -->
+            <div class="container pt-4">
+              <!-- Section: Social media -->
+              <section class="mb-4">
+               
+          
+                <!-- Twitter -->
+                <a
+                  class="btn btn-link btn-floating btn-lg text-dark m-1"
+                  href="#!"
+                  role="button"
+                  data-mdb-ripple-color="dark"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+          
+                <!-- Google -->
+                <a
+                  class="btn btn-link btn-floating btn-lg text-dark m-1"
+                  href="#!"
+                  role="button"
+                  data-mdb-ripple-color="dark"
+                  ><i class="fab fa-google"></i
+                ></a>
+          
+                
+          
+                <!-- Linkedin -->
+                <a
+                  class="btn btn-link btn-floating btn-lg text-dark m-1"
+                  href="#!"
+                  role="button"
+                  data-mdb-ripple-color="dark"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+                <!-- Github -->
+                <a
+                  class="btn btn-link btn-floating btn-lg text-dark m-1"
+                  href="!"
+                  role="button"
+                  data-mdb-ripple-color="dark"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </section>
+              <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+          
+            <!-- Copyright -->
+            <div class="text-center text-light p-3" style="background-color: rgba(3, 52, 13, 0.942);">
+              © 2022 Copyright:
+              <a class="text-warning" href="https://mybloggies.herokuapp.com">Bloggies </a><strong>  ( Designed BY Sudhir Kumar )</strong>
+            </div>
+            <!-- Copyright -->
+          </footer>
     </div>
     
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
