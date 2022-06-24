@@ -12,6 +12,9 @@
           <p class="lead">{{post.desc}}</p>
 
           <a href="/" class="btn btn-success">Back</a>
+          <a href="{% url 'sharepost' post.id  %}" class="btn btn-info btn-lg float-right">Share Post</a>
+          <!-- <p>{{ request.get_full_path }}</p>
+           <p>{{ request.build_absolute_uri }}</p> -->
         </div>
       </div>
       

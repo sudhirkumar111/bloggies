@@ -1,12 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SinUpForm, loginform,PostForm
+from .forms import SinUpForm, loginform,PostForm,ShareForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Post
 
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 
 # Create your views here.
@@ -137,6 +137,32 @@ def delete_post(request,id):
 def post_detail(request,id):
     post=Post.objects.get(pk=id)
     return render(request,'app/detail.html',{'post':post})
+
+
+def postshare(request,id):
+    post =Post.objects.get(pk=id)
+    if request.method == 'POST':
+        form = ShareForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            post_url=request.build_absolute_uri(post.get_absolute_url())
+            subject='{}({}) recommends you to read "{}"'.format(cd['name'],cd['email'],post.title)
+            message='Read Post at: \n {}\n\n{}\' Comments:\n{}'.format(post_url,cd['name'],cd['comments'])
+            mg = EmailMessage(subject,message,'connect.sudhirkumar@gmail.com',['kumar9king@gmail.com'])
+            # print(post_url) 
+            mg.send()     
+            return render(request,'app/sharemsg.html')       
+            
+        else:
+            return HttpResponseRedirect('/')
+
+        
+    
+    else:
+        form = ShareForm()
+
+        return render(request,'app/postshare.html',{'form':form})
+
 
 
 

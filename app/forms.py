@@ -33,3 +33,10 @@ class PostForm(forms.ModelForm):
         labels = {'title':'Title', 'desc':'Description'}
         widgets = {'title':forms.TextInput(attrs={'class':'form-control'}),
         'desc':forms.Textarea(attrs={'class':'form-control '})}
+
+
+class ShareForm(forms.Form):
+    name = forms.CharField(widget=forms.TextInput(attrs={'autofocus':True, 'class':'form-control'}),max_length=50)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    to = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+    comments = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}),required='Fasle')

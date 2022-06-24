@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="col-7 mx-auto"><div class="jumbotron"><div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-info">Send Post</button>
+    </form>
+   
+</div></div>
+</div>
+
+{% endblock %}
+

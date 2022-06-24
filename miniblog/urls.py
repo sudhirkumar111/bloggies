@@ -30,5 +30,6 @@ urlpatterns = [
     path('delete/<int:id>', views.delete_post, name='delete_post'),
     path('captcha/', include('captcha.urls')),
     path('postdetail/<int:id>/', views.post_detail, name='post_detail'),
+    path('postshare/<int:id>/', views.postshare, name='sharepost'),
 
     ]
