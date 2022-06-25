@@ -40,11 +40,11 @@
          <td>{{post.desc}}</td>
          <td class="text-center">
           <a href="{% url 'update_post' post.id %}" class="btn btn-warning btn-md">Edit</a>
-          {% if perms.app.delete_post %}
+          
           <form action="{% url 'delete_post' post.id %}" method="post" class="my-2"> {% csrf_token %}
           <input type="submit" class="btn btn-danger btn-md" value="Delete">
          </form>
-         {% endif %}
+         
          </td>
        </tr>
       {% endfor %}

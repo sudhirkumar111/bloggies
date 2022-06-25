@@ -1,9 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SinUpForm, loginform,PostForm,ShareForm
+from .forms import SinUpForm, loginform,PostForm,ShareForm,CommentForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .models import Post
+from .models import Post,Comment
 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, send_mail
@@ -135,9 +135,27 @@ def delete_post(request,id):
 
 
 def post_detail(request,id):
-    post=Post.objects.get(pk=id)
-    return render(request,'app/detail.html',{'post':post})
-
+    post=Post.objects.get(pk=id)   
+    form = CommentForm()
+  
+    if request.method == 'POST':
+        data = CommentForm(request.POST)
+        if data.is_valid():
+                newdata = data.save(commit=False)
+                newdata.post=post
+                newdata.save()
+                return HttpResponseRedirect('/')
+               
+        else:
+            form = CommentForm() 
+        return render(request, 'app/detail.html',{'form':form})
+    
+    else:
+           
+        comment = post.comments.all()
+        
+        form = CommentForm()
+        return render(request,'app/detail.html',{'form':form,'post':post,'comment':comment})
 
 def postshare(request,id):
     post =Post.objects.get(pk=id)
@@ -147,8 +165,8 @@ def postshare(request,id):
             cd = form.cleaned_data
             post_url=request.build_absolute_uri(post.get_absolute_url())
             subject='{}({}) recommends you to read "{}"'.format(cd['name'],cd['email'],post.title)
-            message='Read Post at: \n {}\n\n{}\' Comments:\n{}'.format(post_url,cd['name'],cd['comments'])
-            mg = EmailMessage(subject,message,'connect.sudhirkumar@gmail.com',['kumar9king@gmail.com'])
+            message='Read Post at: \n {}\n\n{}\'s Comments:\n{}'.format(post_url,cd['name'],cd['comments'])
+            mg = EmailMessage(subject,message,'connect.sudhirkumar@gmail.com',[cd['to']])
             # print(post_url) 
             mg.send()     
             return render(request,'app/sharemsg.html')       
@@ -160,12 +178,13 @@ def postshare(request,id):
     
     else:
         form = ShareForm()
-
         return render(request,'app/postshare.html',{'form':form})
 
 
 
-
+# def PostComment(request,id):
+#     comment = comment.objects.get(pk=id)
+#     return render(request,'app/detail.html',{'comment':comment})
     
     
     

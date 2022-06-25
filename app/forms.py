@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Comment
 from captcha.fields import CaptchaField
 
 
@@ -40,3 +40,11 @@ class ShareForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
     to = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
     comments = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}),required='Fasle')
+
+
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
