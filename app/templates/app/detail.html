@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="col-sm-10 my-5">
-    <h2 class="bg-warning text-success">Detail Post Information</h2>
+    <h2 class="bg-danger text-light">Detail Post Information</h2>
      
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -13,10 +13,16 @@
           <a href="{% url 'sharepost' post.id %}" class="btn btn-success btn-md">Share Post</a><br><br>
           <div style="background-color:rgb(34, 32, 32)">
             <h3 class="display-4 text-light"> <i class="fas fa-comments"></i> Comments...</h3>
+              {% if comment%}
+            <h3 class="text-warning">Total Comment :{{ comment.count}}</h3> 
+            <hr class="bg-light">
             {% for comment in comment %}
           <span><strong> <h4 class="text-warning">Commented By {{comment.name|capfirst}} <small> on {{comment.created_on}}</small></h4></strong></span>
              <p style="color:rgb(207, 205, 212);"><i class="fas fa-hand-point-right"></i> {{comment.body}}</p>
              {% endfor %}
+             {% else %}
+              <h3 class="text-danger">No Comments Available</h3>
+              {% endif %}
              <hr class="bg-info">
   
            </div>
