@@ -1,6 +1,18 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
+{% block msg %}
+
+
+{% if messages %}
+{% for msg in messages %}
+    <p {% if msg.tags %} class="alert alert-{{msg.tags}}" {% endif %}>{{msg}}</p>
+
+{% endfor %}
+
+{% endif %} 
+{% endblock %}
+
 {% block content %}
 <div style="margin:auto"><div class="jumbotron my-5  ">
     
