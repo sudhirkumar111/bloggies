@@ -195,7 +195,7 @@ def contact(request):
         if form.is_valid():
             form.save()
             form = ContactForm()
-            messages.success(request,'Form Submitted Successfully, We will respond to you shortly!!')
+            messages.success(request,'Form Submitted Successfully, We will respond shortly!!')
             return render(request,'app/contact.html',{'form':form})
     else:    
         form = ContactForm()   
