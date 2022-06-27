@@ -11,7 +11,7 @@ from django.conf import settings
 
 # Create your views here.
 def home(request):
-    post = Post.objects.all()   
+    post = Post.objects.all().order_by('-create')  
     return render(request, 'app/home.html',{'post':post,})
 
 def about(request):
