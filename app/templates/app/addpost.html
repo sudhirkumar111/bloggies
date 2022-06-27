@@ -2,15 +2,21 @@
 {% load static %}
 
 {% block content %}
-<div class="col-sm-10">
-    <h3 class="text-white my-5">Dashboard / Add Post</h3>
+<div class="col-lg-10">
+    <div class="jumbotron">
+        <div class="container">
+            <h3 class="text-light btn-dark mt-auto">Dashboard / Add Post</h3>
 
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Add Post" class="btn btn-success">
-        <a href="{% url 'dashboard' %}" class="btn btn-warning">Cancel</a>
-    </form>
-</div>
+            <form action="" method="post" class="text-light">
+                {% csrf_token %}
+                
+                {{form.as_p}}
+                <input type="submit" value="Add Post" class="btn btn-success">  
+                <a href="{% url 'dashboard' %}" class="btn btn-warning">Cancel</a>
+            </form>
+        </div>
+        </div>
+      </div>
+    
 
 {% endblock %}
