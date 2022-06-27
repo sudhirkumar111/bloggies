@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import SinUpForm, loginform,PostForm,ShareForm,CommentForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .models import Post,Comment
+from .models import Post,Comment,Contact
+from .forms import ContactForm
 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, send_mail
@@ -187,4 +188,16 @@ def postshare(request,id):
 #     return render(request,'app/detail.html',{'comment':comment})
     
     
-    
+def contact(request):
+   
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = ContactForm()
+            messages.success(request,'Form Submitted Successfully')
+            return render(request,'app/contact.html',{'form':form})
+    else:    
+        form = ContactForm()   
+        return render(request,'app/contact.html',{'form':form})
+   

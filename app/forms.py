@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
-from .models import Post, Comment
+from .models import Post, Comment, Contact
 from captcha.fields import CaptchaField
 
 
@@ -48,3 +48,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('name', 'email', 'body')
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name','email','comment']
+        widgets = {'name':forms.TextInput(attrs={'class':'form-control'}),
+        'email':forms.EmailInput(attrs={'class':'form-control'}),
+        'comment':forms.Textarea(attrs={'class':'form-control'})}

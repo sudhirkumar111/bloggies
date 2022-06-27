@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="col-lg-9 mx-auto">
+   
+        <div class="jumbotron">
+            {% if messages %}
+             {% for msg in messages %}
+                 <p {% if msg.tags %} class="alert alert-{{msg.tags}}" {% endif %}>{{msg}}</p>
+
+             {% endfor %}
+
+            {% endif %} 
+            <!-- <p {% if msg.tags %} class="alert alert-{{msg.tags}}" {% endif %}>{{msg}}</p> -->
+            <h4 class="display-4 text-dark bg-warning">Contact Form</h4>
+            <div class="container mt-3">
+                
+              <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-md btn-success">Submit</button>
+              </form>
+            </div>      
+          </div>
+    
+   
+
+</div>
+
+{% endblock %}
